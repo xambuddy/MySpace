@@ -14,8 +14,8 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
-                <CarouselView ItemsSource="{Binding Photos}" NumberOfSideItems="2">
-                    <CarouselView.ItemTemplate>
+                <CollectionView ItemsSource="{Binding Photos}">
+                    <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <Grid HeightRequest="200" WidthRequest="200">
                                 <pancake:PancakeView
@@ -42,8 +42,8 @@
                                 </pancake:PancakeView>
                             </Grid>
                         </DataTemplate>
-                    </CarouselView.ItemTemplate>
-                </CarouselView>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
             </Grid>
         </pancake:PancakeView>
     </ContentPage.Content>
