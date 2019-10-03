@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +14,7 @@ namespace MySpace.Services
         static HttpClient httpClient = new HttpClient();
 
         readonly string serverUrl = "https://api.nasa.gov";
+        readonly string epicServerUrl = "https://epic.gsfc.nasa.gov";
 
         readonly string apiKey = "azigzxG1NOJoc060MjcIxLfknnKUWmkr6vOBAWA2";
 
@@ -33,6 +35,26 @@ namespace MySpace.Services
             var marsRoverPhotos = JsonConvert.DeserializeObject<MarsRoverPhotos>(infoJson);
 
             return marsRoverPhotos;
+        }
+
+        public async Task<List<EarthImageMetaData>> GetEarthImagesMetadataAsync()
+        {
+            string year = "2018";
+            string month = "09";
+            string day = "20";
+            var infoJson = await httpClient.GetStringAsync($"{serverUrl}/EPIC/api/natural/date/{year}-{month}-{day}?api_key={apiKey}");
+
+            var earthImages = JsonConvert.DeserializeObject<List<EarthImageMetaData>>(infoJson);
+
+            if(earthImages != null && earthImages.Any())
+            {
+                foreach(var earthImage in earthImages)
+                {
+                    earthImage.img_src = $"{epicServerUrl}/archive/natural/{year}/{month}/{day}/png/{earthImage.image}.png";
+                }
+            }
+
+            return earthImages;
         }
     }
 }

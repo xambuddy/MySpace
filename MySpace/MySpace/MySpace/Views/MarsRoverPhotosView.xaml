@@ -14,36 +14,30 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
-                <CollectionView ItemsSource="{Binding Photos}">
-                    <CollectionView.ItemTemplate>
+                <CarouselView ItemsSource="{Binding Photos}">
+                    <CarouselView.ItemTemplate>
                         <DataTemplate>
                             <Grid HeightRequest="200" WidthRequest="200">
-                                <pancake:PancakeView
-                                    BackgroundGradientAngle="270"
-                                    BackgroundGradientEndColor="#4ca1af"
-                                    BackgroundGradientStartColor="#2c3e50">
-                                    <Grid>
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="*" />
-                                            <RowDefinition Height="Auto" />
-                                        </Grid.RowDefinitions>
-                                        <ffimageloading:CachedImage
-                                            Margin="5"
-                                            Aspect="AspectFit"
-                                            DownsampleToViewSize="true"
-                                            HorizontalOptions="FillAndExpand"
-                                            Source="{Binding img_src}"
-                                            VerticalOptions="CenterAndExpand" />
-                                        <Label
-                                            Grid.Row="1"
-                                            HorizontalTextAlignment="Center"
-                                            Text="{Binding earth_date}" />
-                                    </Grid>
-                                </pancake:PancakeView>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <ffimageloading:CachedImage
+                                    Margin="5"
+                                    Aspect="AspectFit"
+                                    DownsampleToViewSize="True"
+                                    HorizontalOptions="FillAndExpand"
+                                    LoadingPlaceholder="pleasewait.jpg"
+                                    Source="{Binding img_src}"
+                                    VerticalOptions="CenterAndExpand" />
+                                <Label
+                                    Grid.Row="1"
+                                    HorizontalTextAlignment="Center"
+                                    Text="{Binding earth_date}" />
                             </Grid>
                         </DataTemplate>
-                    </CollectionView.ItemTemplate>
-                </CollectionView>
+                    </CarouselView.ItemTemplate>
+                </CarouselView>
             </Grid>
         </pancake:PancakeView>
     </ContentPage.Content>

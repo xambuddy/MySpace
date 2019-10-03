@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace MySpace.ViewModels
@@ -15,35 +16,25 @@ namespace MySpace.ViewModels
         public int Page { get; set; }
         public MarsRoverPhotosViewModel()
         {
-            RefreshCommand = new Command(RefreshCommandExecute);
+            Photos = new ObservableCollection<EarthImageMetaData>();
             _dataService = new DataService();
 
             Page = 1;
-            RefreshCommandExecute();
-        }
-
-        private void RefreshCommandExecute()
-        {
             LoadMarsRoverPhotos();
-            Page++;
         }
 
-        public ObservableCollection<MarsRoverPhoto> Photos { get; set; }
-
-        public Command RefreshCommand { get; set; }
-
-        private bool _isRefreshing;
-
-        public bool IsRefreshing { get => _isRefreshing; set => SetProperty(ref _isRefreshing, value); }
+        public ObservableCollection<EarthImageMetaData> Photos { get; set; }
 
         private async void LoadMarsRoverPhotos()
         {
-            var photosRoot = await _dataService?.GetRoverPhotosAsync(1000, Page);
+            var photosRoot = await _dataService?.GetEarthImagesMetadataAsync();
 
             if (photosRoot != null)
             {
-                Photos = new ObservableCollection<MarsRoverPhoto>(photosRoot.photos);
-                IsRefreshing = false;
+                foreach(var photo in photosRoot)
+                {
+                    Photos.Add(photo);
+                }
             }
         }
     }
