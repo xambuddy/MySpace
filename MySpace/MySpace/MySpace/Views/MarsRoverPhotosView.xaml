@@ -14,11 +14,8 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
-                <CollectionView ItemsSource="{Binding Photos}" SelectionMode="Single">
-                    <CollectionView.ItemsLayout>
-                        <GridItemsLayout Orientation="Horizontal" Span="4" />
-                    </CollectionView.ItemsLayout>
-                    <CollectionView.ItemTemplate>
+                <CarouselView ItemsSource="{Binding Photos}" NumberOfSideItems="2">
+                    <CarouselView.ItemTemplate>
                         <DataTemplate>
                             <Grid HeightRequest="200" WidthRequest="200">
                                 <pancake:PancakeView
@@ -45,18 +42,8 @@
                                 </pancake:PancakeView>
                             </Grid>
                         </DataTemplate>
-                    </CollectionView.ItemTemplate>
-                    <CollectionView.EmptyView>
-                        <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="Center">
-                            <Label
-                                FontSize="Subtitle"
-                                HorizontalOptions="CenterAndExpand"
-                                Text="Hit the + button to save some cities!"
-                                TextColor="White"
-                                VerticalOptions="CenterAndExpand" />
-                        </StackLayout>
-                    </CollectionView.EmptyView>
-                </CollectionView>
+                    </CarouselView.ItemTemplate>
+                </CarouselView>
             </Grid>
         </pancake:PancakeView>
     </ContentPage.Content>
