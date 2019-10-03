@@ -7,6 +7,7 @@
     xmlns:local="clr-namespace:MySpace.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:views="clr-namespace:MySpace.Views"
+    Shell.NavBarIsVisible="True"
     Title="MySpace"
     mc:Ignorable="d">
     <Shell.Resources>
@@ -33,5 +34,9 @@
 
     <FlyoutItem Title="Mars Rover Photos">
         <ShellContent ContentTemplate="{DataTemplate views:MarsRoverPhotosView}" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="Earth Image Gallery">
+        <ShellContent ContentTemplate="{DataTemplate views:EarthGalleryView}" />
     </FlyoutItem>
 </Shell>

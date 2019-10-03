@@ -5,26 +5,27 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
 using System.Threading.Tasks;
-using Xamarin.Forms;
 
 namespace MySpace.ViewModels
 {
-    public class MarsRoverPhotosViewModel : BaseViewModel
+    public class EarthGalleryViewModel : BaseViewModel
     {
         readonly DataService _dataService;
-        public MarsRoverPhotosViewModel()
+
+        public EarthGalleryViewModel()
         {
             _dataService = new DataService();
+
             LoadPhotos();
         }
 
         private async Task LoadPhotos()
         {
-            var photosRoot = await _dataService.GetRoverPhotosAsync(1000, 1);
+            var photosRoot = await _dataService.GetEarthImagesMetadataAsync();
 
-            Photos = new ObservableCollection<MarsRoverPhoto>(photosRoot.photos);
+            Photos = new ObservableCollection<EarthImageMetaData>(photosRoot);
         }
 
-        public ObservableCollection<MarsRoverPhoto> Photos { get; set; }
+        public ObservableCollection<EarthImageMetaData> Photos { get; set; }
     }
 }

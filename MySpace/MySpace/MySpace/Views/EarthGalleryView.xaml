@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
-    x:Class="MySpace.Views.MarsRoverPhotosView"
+    x:Class="MySpace.Views.EarthGalleryView"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
@@ -14,11 +14,8 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
-                <CollectionView ItemsSource="{Binding Photos}">
-                    <CollectionView.ItemsLayout>
-                        <GridItemsLayout Orientation="Vertical" Span="2" />
-                    </CollectionView.ItemsLayout>
-                    <CollectionView.ItemTemplate>
+                <CarouselView ItemsSource="{Binding Photos}">
+                    <CarouselView.ItemTemplate>
                         <DataTemplate>
                             <Grid HeightRequest="200" WidthRequest="200">
                                 <Grid.RowDefinitions>
@@ -26,16 +23,16 @@
                                     <RowDefinition Height="Auto" />
                                 </Grid.RowDefinitions>
                                 <ffimageloading:CachedImage
-                                    Aspect="AspectFill"
+                                    Aspect="AspectFit"
                                     DownsampleToViewSize="True"
                                     HorizontalOptions="Center"
                                     LoadingPlaceholder="pleasewait.jpg"
                                     Source="{Binding img_src}" />
-                                <Label HorizontalTextAlignment="Center" Text="{Binding earth_date}" />
+                                <Label HorizontalTextAlignment="Center" Text="{Binding date}" />
                             </Grid>
                         </DataTemplate>
-                    </CollectionView.ItemTemplate>
-                </CollectionView>
+                    </CarouselView.ItemTemplate>
+                </CarouselView>
             </Grid>
         </pancake:PancakeView>
     </ContentPage.Content>
